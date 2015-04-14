@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>GPU Surface Curvature Estimation on Deformable Meshes - Wesley Griffin</title>
+  <meta name="author" content="Wesley Griffin">
+
+  
+  <meta name="description" content="Griffin, Wesley, Yu Wang, David Berrios, and Marc Olano. 2011.
+GPU Surface Curvature Estimation on Deformable Meshes.
+In Proceedings of the 2011 ACM &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://fraktured.net/blog/2011/02/20/gpu-surface-curvature-estimation-on-deformable-meshes/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Wesley Griffin" type="application/atom+xml">
+  <link href="http://fonts.googleapis.com/css?family=Droid+Serif:400,700" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Vollkorn:400" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-9265900-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Wesley Griffin</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<ul class="main-navigation">
+  <li><a href="/downloads/cv.pdf">Vitae</a></li>
+  <li><a href="/publications.html">Publications</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">GPU Surface Curvature Estimation on Deformable Meshes</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-20T12:00:00-05:00" pubdate data-updated="true">Feb 20<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Griffin, Wesley, Yu Wang, David Berrios, and Marc Olano. 2011.
+<em>GPU Surface Curvature Estimation on Deformable Meshes</em>.
+In Proceedings of the 2011 ACM SIGGRAPH Symposium on Interactive 3D Graphics and Games (I3D), 159-166 New York: ACM.
+<strong>Best Paper Honorable Mention</strong>.
+<a href="http://dx.doi.org/10.1145/1944745.1944772">DOI: 10.1145/1944745.1944772</a>.<br/>
+<a href="http://dl.acm.org/authorize?465386">ACM DL</a> - <a href="/downloads/papers/2011_i3d_rtc.pdf">Updated PDF</a><br/>
+<em>Note: Section 3.5 in the ACM DL version has an incorrect equation. The updated PDF has the corrected equation.</em></p>
+
+<p><img src="/downloads/images/2011_i3d_rtc.png"></p>
+
+<!--more-->
+
+
+<h2>Code and Data Sets</h2>
+
+<ul>
+<li><a href="/downloads/code/2011_i3d_rtc.zip">HLSL Code</a></li>
+<li><a href="http://www.ir-ltd.net/infinite-3d-head-scan-released/">Lee Perry-Smith: 3D Head Scan</a></li>
+<li><a href="http://graphics.cs.cmu.edu/projects/sma/">Doug James and Christopher Twigg: Skinning Mesh Animations</a></li>
+<li><a href="http://www9.informatik.uni-erlangen.de/External/vollib/">Stefan Rottger: The Volume Library</a></li>
+</ul>
+
+
+<h2>Abstract</h2>
+
+<blockquote><p>Surface curvature is used in a number of areas in computer graphics,<br/>including texture synthesis and shape representation, mesh<br/>simplification, surface modeling, and non-photorealistic line drawing.<br/>Most real-time applications must estimate curvature on a triangular<br/>mesh. This estimation has been limited to CPU algorithms, forcing object<br/>geometry to reside in main memory. However, as more computational work<br/>is done directly on the GPU, it is increasingly common for object<br/>geometry to exist only in GPU memory. Examples include vertex skinned<br/>animations and isosurfaces from GPU-based surface reconstruction<br/>algorithms.</p><p>For static models, curvature can be pre-computed and CPU algorithms are<br/>a reasonable choice. For deforming models where the geometry only<br/>resides on the GPU, transferring the deformed mesh back to the CPU<br/>limits performance. We introduce a GPU algorithm for estimating<br/>curvature in real-time on arbitrary triangular meshes. We demonstrate<br/>our algorithm with curvature-based NPR feature lines and a<br/>curvature-based approximation for ambient occlusion. We show curvature<br/>computation on volumetric datasets with a GPU isosurface extraction<br/>algorithm and vertex-skinned animations. Our curvature estimation is up<br/>to ~18x faster than a multi-threaded CPU benchmark.</p></blockquote>
+
+
+<h2>Video</h2>
+
+<p><video width='' height='' preload='none' controls poster=''><source src='/downloads/videos/2011_i3d_rtc.mp4' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/></video></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Wesley Griffin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-20T12:00:00-05:00" pubdate data-updated="true">Feb 20<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/publications/'>publications</a>
+  
+</span>
+
+
+    </p>
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/06/28/variable-bit-rate-gpu-texture-compression/" title="Next Post: Variable Bit Rate GPU Texture Compression">Variable Bit Rate GPU Texture Compression &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><nav><ul class="sub-navigation">
+  <li><a href="http://www.linkedin.com/in/wesleygriffin">LinkedIn</a></li>
+  <li><a href="http://twitter.com/griffin_wes">Twitter</a></li>
+  <li><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/g/Griffin:Wesley.html">DBLP</a></li>
+  <li><a href="http://mailhide.recaptcha.net/d?k=01ygw9PF5s_NJJIclucVqXHQ==&c=K_PXnTc19MuvmYbsaHOStaiv6uLxB-8ri79bhI3VYm8=">griff...@cs.umbc.edu</a></li>
+</ul></nav>
+<p>
+  Copyright &copy; 2012 - Wesley Griffin. Licensed under a
+  <a href="http://creativecommons.org/licenses/by/3.0/us/">Creative Commons Attribution 3.0 License</a> -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>
