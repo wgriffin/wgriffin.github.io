@@ -54,7 +54,6 @@ $(function(){
   var last = { t: new Date() };
 
   window.addEventListener("devicemotion", function(evt) {
-    console.log(evt.acceleration);
     if (!("x" in evt.acceleration)) return;
 
     var curr = {
@@ -80,8 +79,6 @@ $(function(){
       pick();
       last = curr;
     }
-
-    $("#name").val("dx: "+delta.x.toFixed(2)+" dy: "+delta.y.toFixed(2)+" dz: "+delta.z.toFixed(2)+" dt: "+delta.t);
   }, false);
 });
     </script>
