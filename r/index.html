@@ -19,7 +19,7 @@
         <form class="form-inline">
           <div class="text-center">
             <input id="name" class="form-control input-lg" type="text" aria-label="Restaurant Name" readonly placeholder="Shake to pick...">
-            <button id="submit" type="submit" class="btn btn-default btn-lg">Pick</button>
+            <button type="submit" class="btn btn-default btn-lg">Pick</button>
           </div>
         </form>
         <hr>
@@ -37,16 +37,21 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 
     <script>
+function pick() {
+  $("#name").val("pick!");
+}
+
 $(function(){
-  $("#submit").on("submit", function(evt){
-    $("#name").val("pick!");
-  });
+  $("form").on("submit", function(){
+    pick();
+    return false;
+  }); 
+
+  if (!window.DeviceMotionEvent) return;
 
   var threshold = 2;
   var timeout = 1000;
   var last = { t: new Date() };
-
-  if (!window.DeviceMotionevent) return;
 
   window.addEventListener("devicemotion", function(evt) {
     var curr = {
@@ -63,7 +68,13 @@ $(function(){
       t: curr.getTime()-last.getTime()
     };
 
-    $("#name").val("dx: "+delta.x.toFixed(2)+" dy: "+delta.y.toFixed(2)+" dz: "+delta.z.toFixed(2)+" dt: "+delta.t);
+    if (((delta.x>threshold && delta.y>threshold) ||
+         (delta.x>threshold && delta.z>threshold) ||
+         (delta.y>threshold && delta.z>threshold)) &&
+        delta.t>timeout) {
+      pick();
+    }
+
   }, false);
 });
     </script>
