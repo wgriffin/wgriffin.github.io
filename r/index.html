@@ -10,20 +10,17 @@
     <title>Restaurant Picker</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-
-    <style>
-      body { padding-top: 50px; }
-      #content { padding: 40px 15px; }
-    </style>
   </head>
 
   <body>
     <section id="pick">
       <div id="container-fluid">
         <h1 class="text-center">Pick</h1>
-        <form>
-          <input id="name" class="form-control input-lg" type="text" aria-label="Restaurant Name" readonly placeholder="Shake to pick...">
-          <button type="submit" class="btn btn-default btn-lg">Pick</button>
+        <form class="form-inline">
+          <div class="text-center">
+            <input id="name" class="form-control input-lg" type="text" aria-label="Restaurant Name" readonly placeholder="Shake to pick...">
+            <button id="submit" type="submit" class="btn btn-default btn-lg">Pick</button>
+          </div>
         </form>
         <hr>
       </div>
@@ -41,6 +38,10 @@
 
     <script>
 $(function(){
+  $("#submit").on("submit", function(evt){
+    $("#name").val("pick!");
+  });
+
   var threshold = 2;
   var timeout = 1000;
   var last = { t: new Date() };
