@@ -65,7 +65,7 @@ $(function(){
       x: Math.abs(curr.x-last.x),
       y: Math.abs(curr.y-last.y),
       z: Math.abs(curr.z-last.z),
-      t: curr.getTime()-last.getTime()
+      t: curr.t.getTime()-last.t.getTime()
     };
 
     if (((delta.x>threshold && delta.y>threshold) ||
