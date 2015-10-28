@@ -62,6 +62,7 @@ $(function(){
     };
 
     if (!"x" in last) { last = curr; return; }
+    $("#name").val("cx: "+curr.x.toFixed(2)+" cy: "+curr.y.toFixed(2)+" cz: "+curr.z.toFixed(2)+" ct: "+curr.t);
 
     var delta = {
       x: Math.abs(curr.x-last.x),
@@ -78,7 +79,7 @@ $(function(){
       last = curr;
     }
 
-    $("#name").val("dx: "+delta.x.toFixed(2)+" dy: "+delta.y.toFixed(2)+" dz: "+delta.z.toFixed(2)+" dt: "+delta.t);
+    //$("#name").val("dx: "+delta.x.toFixed(2)+" dy: "+delta.y.toFixed(2)+" dz: "+delta.z.toFixed(2)+" dt: "+delta.t);
   }, false);
 });
     </script>
