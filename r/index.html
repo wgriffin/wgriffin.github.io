@@ -61,6 +61,8 @@ $(function(){
       t: new Date()
     };
 
+    if (!"x" in last) { last = curr; return; }
+
     var delta = {
       x: Math.abs(curr.x-last.x),
       y: Math.abs(curr.y-last.y),
@@ -73,6 +75,7 @@ $(function(){
          (delta.y>threshold && delta.z>threshold)) &&
         delta.t>timeout) {
       pick();
+      last = curr;
     }
 
     $("#name").val("dx: "+delta.x.toFixed(2)+" dy: "+delta.y.toFixed(2)+" dz: "+delta.z.toFixed(2)+" dt: "+delta.t);
