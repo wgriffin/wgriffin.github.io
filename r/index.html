@@ -54,6 +54,8 @@ $(function(){
   var last = { t: new Date() };
 
   window.addEventListener("devicemotion", function(evt) {
+    if (!evt.acceleration) return;
+
     var curr = {
       x: evt.acceleration.x,
       y: evt.acceleration.y,
@@ -62,7 +64,6 @@ $(function(){
     };
 
     if (!"x" in last) { last = curr; return; }
-    $("#name").val("cx: "+curr.x.toFixed(2)+" cy: "+curr.y.toFixed(2)+" cz: "+curr.z.toFixed(2)+" ct: "+curr.t);
 
     var delta = {
       x: Math.abs(curr.x-last.x),
