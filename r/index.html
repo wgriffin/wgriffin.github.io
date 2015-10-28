@@ -64,26 +64,25 @@ $(function(){
   var timeout = 1000;
   var last = { t: new Date() };
 
-  if (window.DeviceMotionevent) {
-    window.addEventListener("devicemotion", function(evt) {
-      var curr = {
-        x: evt.acceleration.x,
-        y: evt.acceleration.y,
-        z: evt.acceleration.z,
-        t: new Date()
-      };
+  if (!window.DeviceMotionevent) return;
 
-      var delta = {
-        x: Math.abs(curr.x-last.x),
-        y: Math.abs(curr.y-last.y),
-        z: Math.abs(curr.z-last.z),
-        t: curr.getTime()-last.getTime()
-      };
+  window.addEventListener("devicemotion", function(evt) {
+    var curr = {
+      x: evt.acceleration.x,
+      y: evt.acceleration.y,
+      z: evt.acceleration.z,
+      t: new Date()
+    };
 
-      $("#name").val("dx: "+delta.x.toFixed(2)+" dy: "+delta.y.toFixed(2)+
-          " dz: "+delta.z.toFixed(2)+" dt: "+delta.t);
-    }, false);
-  }
+    var delta = {
+      x: Math.abs(curr.x-last.x),
+      y: Math.abs(curr.y-last.y),
+      z: Math.abs(curr.z-last.z),
+      t: curr.getTime()-last.getTime()
+    };
+
+    $("#name").val("dx: "+delta.x.toFixed(2)+" dy: "+delta.y.toFixed(2)+" dz: "+delta.z.toFixed(2)+" dt: "+delta.t);
+  }, false);
 });
     </script>
   </body>
