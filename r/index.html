@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="Restaurant Picker">
+    <meta name="author" content="Wesley Griffin <wgriffin@fraktured.net>">
+    <title>Restaurant Picker</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+    <style>
+      body { padding-top: 50px; }
+      #content { padding: 40px 15px; }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Restaurant Picker</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Pick</a></li>
+            <li><a href="#add">Add</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <section id="pick">
+      <div id="container-fluid">
+        <h1 class="text-center">Pick</h1>
+        <form>
+          <input id="name" class="form-control input-lg" type="text" aria-label="Restaurant Name" readonly placeholder="Shake to pick...">
+        </form>
+        <hr>
+      </div>
+    </section>
+
+    <section id="add">
+      <div id="container-fluid">
+        <h1 class="text-center">Add</h1>
+        <hr>
+      </div>
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+
+    <script>
+$(function(){
+  var threshold = 2;
+  var timeout = 1000;
+  var last = { t: new Date() };
+
+  if (window.DeviceMotionevent) {
+    window.addEventListener("devicemotion", function(evt) {
+      var curr = {
+        x: evt.acceleration.x,
+        y: evt.acceleration.y,
+        z: evt.acceleration.z,
+        t: new Date()
+      };
+
+      var delta = {
+        x: Math.abs(curr.x-last.x),
+        y: Math.abs(curr.y-last.y),
+        z: Math.abs(curr.z-last.z),
+        t: curr.getTime()-last.getTime()
+      };
+
+      $("#name").val("dx: "+delta.x.toFixed(2)+" dy: "+delta.y.toFixed(2)+
+          " dz: "+delta.z.toFixed(2)+" dt: "+delta.t);
+    }, false);
+  }
+});
+    </script>
+  </body>
+</html>
+
